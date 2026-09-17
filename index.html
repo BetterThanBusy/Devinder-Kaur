@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+
+<!-- ============================================================
+     SHARE PREVIEW (LinkedIn, WhatsApp, X).
+     If Vercel gives you a different address than
+     https://devinder-padam.vercel.app, replace it in the 4 places below.
+     ============================================================ -->
+<title>Devinder Kaur Padam | Marketing × AI × Customer Intelligence</title>
+<meta name="description" content="Devinder Kaur Padam builds practical AI systems for marketing and customer intelligence. 9+ years across eCommerce, loyalty and analytics, with AED 267M in incremental revenue driven.">
+<link rel="canonical" href="https://devinder-padam.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://devinder-padam.vercel.app/">
+<meta property="og:title" content="Devinder Kaur Padam | Marketing × AI × Customer Intelligence">
+<meta property="og:description" content="I build practical AI systems around real business problems: agents, customer value models and decision engines.">
+<meta property="og:image" content="https://devinder-padam.vercel.app/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Devinder Kaur Padam | Marketing × AI × Customer Intelligence">
+<meta name="twitter:description" content="9+ years in marketing and customer intelligence. Now building agents and models that turn customer data into decisions.">
+<meta name="twitter:image" content="https://devinder-padam.vercel.app/assets/og.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&family=Pinyon+Script&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #2F4156;
+    --teal: #567C8D;
+    --teal-ink: #44697A;   /* teal darkened for small text on beige */
+    --sky: #C8D9E6;
+    --beige: #F5EFEB;
+    --white: #FFFFFF;
+    --rule: #DCD3CC;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Albert Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --wrap: 1120px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0; background: var(--beige); color: var(--navy);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0; }
+  h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); letter-spacing: -0.01em; }
+  h3 { font-size: 1.45rem; }
+  p { margin: 0 0 1em; }
+  section { padding: 96px 0; }
+  .section-intro { max-width: 60ch; color: var(--teal-ink); margin-top: 12px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 1rem;
+    text-decoration: none; border: 1.5px solid var(--navy); transition: background .15s, color .15s;
+  }
+  .btn-solid { background: var(--navy); color: var(--white); }
+  .btn-solid:hover { background: var(--teal); border-color: var(--teal); }
+  .btn-line { background: transparent; color: var(--navy); }
+  .btn-line:hover { background: var(--navy); color: var(--white); }
+  .text-link { font-weight: 600; text-underline-offset: 4px; text-decoration-thickness: 1.5px; text-decoration-color: var(--teal); }
+  .text-link:hover { color: var(--teal-ink); }
+
+  /* Nav */
+  .site-nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(245, 239, 235, 0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .site-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; text-decoration: none; white-space: nowrap; }
+  .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; font-size: 0.97rem; }
+  .nav-links a:hover { color: var(--teal-ink); }
+  .nav-cv { padding: 8px 16px; font-size: 0.92rem; }
+  @media (max-width: 860px) { .nav-links { display: none; } }
+
+  /* Hero: editorial "about me" layout.
+     A blurred copy of your photo fills the background under a navy tint,
+     the sharp photo stands tall on the left, and the script title overlaps its edge. */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden;
+    color: var(--white); padding: 72px 0; min-height: calc(100svh - 68px);
+    display: flex; align-items: center; background: var(--navy);
+  }
+  .hero-bg {
+    position: absolute; inset: -60px; z-index: -2;
+    background: url("assets/headshot.jpg") center / cover no-repeat;
+    filter: blur(28px) grayscale(40%); transform: scale(1.08);
+  }
+  .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(47, 65, 86, 0.84); }
+  .hero .wrap { width: 100%; display: grid; grid-template-columns: 320px 1fr; gap: 0; align-items: center; }
+  .hero-photo { margin: 0; position: relative; z-index: 1; }
+  .hero-photo img, .photo-fallback {
+    width: 100%; height: auto; aspect-ratio: 5 / 11; object-fit: cover; object-position: center top;
+  }
+  .photo-fallback {
+    display: none; place-items: center; background: var(--teal); color: var(--sky);
+    font-family: var(--serif); font-size: 5rem;
+  }
+  .hero-photo.no-photo img { display: none; }
+  .hero-photo.no-photo .photo-fallback { display: grid; }
+  .hero-copy { position: relative; z-index: 2; padding-left: 64px; max-width: 620px; }
+  .script-title {
+    display: block; font-family: "Pinyon Script", "Brush Script MT", cursive; font-weight: 400;
+    font-size: clamp(4.5rem, 9vw, 8rem); line-height: 0.9; margin: 0 0 32px -150px;
+    white-space: nowrap; color: var(--white);
+  }
+  .hello { font-size: 1.35rem; margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); letter-spacing: -0.01em; color: var(--white); max-width: 22ch; }
+  .lede { font-size: 1.15rem; max-width: 46ch; margin: 20px 0 32px; color: var(--sky); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero .btn-solid { background: var(--sky); border-color: var(--sky); color: var(--navy); }
+  .hero .btn-solid:hover { background: var(--white); border-color: var(--white); }
+  .hero .btn-line { color: var(--white); border-color: var(--white); }
+  .hero .btn-line:hover { background: var(--white); color: var(--navy); }
+  .hero :focus-visible { outline-color: var(--sky); }
+  .hero-social {
+    display: flex; flex-wrap: wrap; gap: 24px; list-style: none; padding: 0; margin: 40px 0 0;
+  }
+  .hero .text-link { text-decoration-color: var(--sky); }
+  .hero .text-link:hover { color: var(--sky); }
+  @media (max-width: 860px) {
+    /* Phones keep the desktop feel: tall photo left, script title overlapping it, text below */
+    .hero { padding: 32px 0 64px; min-height: 0; }
+    .hero .wrap { grid-template-columns: 52% 1fr; align-items: end; }
+    .hero-photo img, .photo-fallback { aspect-ratio: 5 / 9; }
+    .hero-copy { display: contents; }
+    .hero-intro { grid-column: 2; position: relative; z-index: 2; padding-bottom: 8px; }
+    .script-title {
+      margin: 0 0 16px -72px; font-size: clamp(3.4rem, 16vw, 4.8rem);
+      line-height: 0.85; white-space: normal;
+    }
+    .hello { margin: 0 0 0 14px; font-size: 1.1rem; }
+    .hero-body { grid-column: 1 / -1; margin-top: 32px; }
+  }
+
+  /* Proof numbers */
+  .proof { background: var(--navy); color: var(--white); padding: 72px 0; border-top: 1px solid rgba(200, 217, 230, 0.25); }
+  .proof h2 { color: var(--white); font-size: 1.6rem; }
+  .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin: 36px 0 0; padding: 0; list-style: none; }
+  .proof-grid li { padding: 24px 24px 24px 0; border-top: 1px solid rgba(200, 217, 230, 0.35); }
+  .proof-num { display: block; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.1; color: var(--sky); }
+  .proof-label { display: block; margin-top: 6px; }
+  @media (max-width: 700px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Method: a real sequence, so it is numbered */
+  .method-steps { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(7, 1fr); counter-reset: step; }
+  .method-steps li { counter-increment: step; padding: 16px 12px 0 0; border-top: 3px solid var(--sky); }
+  .method-steps li::before { content: counter(step); display: block; font-family: var(--serif); color: var(--teal-ink); font-size: 1.1rem; margin-bottom: 4px; }
+  .method-steps strong { display: block; font-size: 1rem; }
+  .method-steps span { font-size: 0.9rem; color: var(--teal-ink); }
+  .method-steps li:last-child { border-top-color: var(--teal); }
+  @media (max-width: 900px) {
+    .method-steps { grid-template-columns: 1fr; }
+    .method-steps li { display: grid; grid-template-columns: 32px 1fr; border-top: 0; border-left: 3px solid var(--sky); padding: 8px 0 8px 16px; }
+    .method-steps li::before { grid-row: span 2; }
+  }
+
+  /* Work */
+  .work { background: var(--white); }
+  .project { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; padding: 48px 0; border-top: 1px solid var(--rule); }
+  .project:first-of-type { margin-top: 40px; }
+  .project-summary { font-size: 1.1rem; margin-top: 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 20px 0 0; }
+  .tags li { font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; background: var(--beige); }
+  .project dl { margin: 0; }
+  .project dt { font-weight: 600; color: var(--teal-ink); font-size: 0.95rem; }
+  .project dd { margin: 2px 0 18px; }
+  .project-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .result { background: var(--sky); padding: 2px 6px; border-radius: 3px; }
+  @media (max-width: 860px) { .project { grid-template-columns: 1fr; gap: 20px; } }
+
+  /* Experience (optional, filled from config) */
+  .timeline { list-style: none; padding: 0; margin: 40px 0 0; }
+  .timeline li { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 24px 0; border-top: 1px solid var(--rule); }
+  .timeline .when { color: var(--teal-ink); font-weight: 500; }
+  .timeline h3 { font-size: 1.2rem; }
+  @media (max-width: 700px) { .timeline li { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* Speaking + writing */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .topic-list { list-style: none; padding: 0; margin: 28px 0 32px; }
+  .topic-list li { padding: 14px 0; border-top: 1px solid var(--rule); font-family: var(--serif); font-size: 1.2rem; }
+  .writing-card { background: var(--navy); color: var(--white); border-radius: 4px; padding: 40px; }
+  .writing-card h2 { color: var(--white); }
+  .writing-card .topic-list li { border-top-color: rgba(200, 217, 230, 0.35); }
+  .writing-card .btn-line { color: var(--white); border-color: var(--sky); }
+  .writing-card .btn-line:hover { background: var(--sky); color: var(--navy); }
+  @media (max-width: 860px) { .pair { grid-template-columns: 1fr; gap: 48px; } }
+
+
+  /* Extra photos (photo-2, photo-3, photo-4). Each one hides itself if the file is missing. */
+  .photo-missing .optional-photo, .optional-photo.photo-missing { display: none !important; }
+  .framed { position: relative; margin: 0; }
+  .framed::before {
+    content: ""; position: absolute; inset: 20px -20px -20px 20px;
+    background: repeating-linear-gradient(90deg, var(--sky) 0 3px, var(--white) 3px 14px);
+  }
+  .framed img { position: relative; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
+
+  .about .wrap { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: center; }
+  .about p { max-width: 60ch; }
+  .about h2 { margin-bottom: 24px; }
+  .about.photo-missing .wrap { grid-template-columns: 1fr; }
+
+  .speak-photo { margin: 28px 0 0; }
+  .speak-photo img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: center 30%; }
+
+  .contact .wrap { display: grid; grid-template-columns: 1fr 300px; gap: 64px; align-items: center; overflow-x: clip; }
+  .contact.photo-missing .wrap { grid-template-columns: 1fr; }
+  .contact .framed::before { background: repeating-linear-gradient(90deg, var(--white) 0 3px, var(--sky) 3px 14px); }
+
+  @media (max-width: 860px) {
+    .about .wrap, .contact .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .framed { max-width: 300px; }
+    .framed::before { inset: 14px -14px -14px 14px; }
+  }
+
+  /* Contact */
+  .contact { background: var(--sky); text-align: left; }
+  .contact h2 { max-width: 20ch; }
+  .contact .hero-actions { margin-top: 32px; }
+  footer { padding: 32px 0; font-size: 0.9rem; color: var(--teal-ink); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Devinder Kaur Padam</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#method">How I work</a></li>
+        <li><a href="#speaking">Speaking</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-solid nav-cv" data-link="resume" download>Download CV</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <figure class="hero-photo" id="heroPhoto">
+        <img src="assets/headshot.jpg" alt="Devinder Kaur Padam" width="600" height="1320"
+             onerror="document.getElementById('heroPhoto').classList.add('no-photo')">
+        <div class="photo-fallback" aria-hidden="true">DP</div>
+      </figure>
+      <div class="hero-copy">
+        <div class="hero-intro">
+          <span class="script-title" aria-hidden="true">about me</span>
+          <p class="hello">Hi, I'm Devinder</p>
+        </div>
+        <div class="hero-body">
+        <h1>I build practical AI systems around real business problems.</h1>
+        <p class="lede">9+ years across digital marketing, eCommerce, loyalty and customer analytics. Now I build the agents and models that turn customer data into decisions a marketing team can act on.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#work">See my work</a>
+          <a class="btn btn-line" data-link="email" data-subject="Hello Devinder">Email me</a>
+        </div>
+        <ul class="hero-social link-group">
+          <li><a class="text-link" data-link="linkedin">LinkedIn</a></li>
+          <li><a class="text-link" data-link="github">GitHub</a></li>
+          <li><a class="text-link" data-link="substack">Substack</a></li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <h2 id="proof-title">Results from my marketing career</h2>
+      <ul class="proof-grid">
+        <li><span class="proof-num">AED 267M</span><span class="proof-label">incremental revenue</span></li>
+        <li><span class="proof-num">42%</span><span class="proof-label">loyalty redemption</span></li>
+        <li><span class="proof-num">25%</span><span class="proof-label">CLTV improvement</span></li>
+        <li><span class="proof-num">17%</span><span class="proof-label">net revenue increase</span></li>
+        <li><span class="proof-num">15%</span><span class="proof-label">churn reduction</span></li>
+        <li><span class="proof-num">8%</span><span class="proof-label">ROAS improvement</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div>
+        <h2 id="about-title">From marketing results to AI systems</h2>
+        <p>I spent 9+ years in digital marketing, eCommerce, loyalty and customer analytics. The job was always the same: find the customers who matter most and give the team a clear next move.</p>
+        <p>Today I build that thinking into software: agents that plan and check their own work, models that predict customer value, and decision layers that turn predictions into actions.</p>
+        <p>I also run Better Than Busy, where I publish what I build and what the results showed, so other professionals can use AI with confidence.</p>
+      </div>
+      <figure class="framed optional-photo">
+        <img src="assets/photo-2.jpg" alt="Devinder Kaur Padam at work" width="720" height="900" loading="lazy"
+             onerror="this.closest('section').classList.add('photo-missing')">
+      </figure>
+    </div>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <h2 id="work-title">Selected work</h2>
+      <p class="section-intro">Working systems with code you can read. Each one starts from a business question, not a model.</p>
+
+      <article class="project">
+        <div>
+          <h3>Career Intelligence Agent</h3>
+          <p class="project-summary">A multi-agent career counsellor that turns someone's experience, skills and goals into a personalised six-month plan.</p>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>Railway</li><li>Multi-agent</li></ul>
+        </div>
+        <div>
+          <dl>
+            <dt>What I built</dt>
+            <dd>A planner, seven specialist agents (profile, market, gap, leverage, paths, action, insight) and a critic that reviews the output in a loop.</dd>
+            <dt>Why it's efficient</dt>
+            <dd>Only one agent reads the full resume; the rest work from a compact summary. The loop stops at 85% confidence, four rounds or <span class="result">5,000 tokens per run</span>.</dd>
+          </dl>
+          <div class="project-links link-group">
+            <a class="text-link" data-link="careerAgentDemo">Try the live demo</a>
+            <a class="text-link" data-link="careerAgentCode">View code on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>UAE Credit Card Intelligence</h3>
+          <p class="project-summary">Ranks UAE credit cards by estimated net annual value for a given spending profile and builds the best two-card strategy.</p>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Streamlit</li></ul>
+        </div>
+        <div>
+          <dl>
+            <dt>What I built</dt>
+            <dd>A deterministic calculation engine for rewards, fees, caps and eligibility. The language model only explains the result; it never does the maths.</dd>
+            <dt>Why it's trustworthy</dt>
+            <dd>Every card rule comes from the issuer's official documents, with source and version tracked. <span class="result">Anything unverifiable is marked unknown, not guessed.</span></dd>
+          </dl>
+          <div class="project-links link-group">
+            <a class="text-link" data-link="cardAgentLive">Try the live app</a>
+            <a class="text-link" data-link="cardAgentCode">View code on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Customer Intelligence Engine</h3>
+          <p class="project-summary">Predicts which customers will generate the most future revenue, so marketing budget goes where it pays back.</p>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>CLV</li><li>Churn</li></ul>
+        </div>
+        <div>
+          <dl>
+            <dt>What I built</dt>
+            <dd>A modular churn and customer-value pipeline on the UCI Online Retail II dataset: 4,966 customers, 180-day prediction window.</dd>
+            <dt>Result</dt>
+            <dd>The top 10% of customers by predicted value <span class="result">captured 69.9% of actual future revenue</span>. Error fell from £886 (baseline) to £617 per customer.</dd>
+          </dl>
+          <div class="project-links link-group">
+            <a class="text-link" data-link="cieCode">View code on GitHub</a>
+            <a class="text-link" data-link="cieArticle">Read the write-up</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Customer Purchase Decision Engine</h3>
+          <p class="project-summary">Predicts who will buy again in the next 30 days and turns that into a prioritised marketing action list.</p>
+          <ul class="tags"><li>Python</li><li>Classification</li><li>Segmentation</li></ul>
+        </div>
+        <div>
+          <dl>
+            <dt>What I built</dt>
+            <dd>Feature engineering, a repeat-purchase model, customer-level explanations and a decision layer that assigns each customer a next action.</dd>
+            <dt>How it's framed</dt>
+            <dd>The priority score is presented as a prioritisation guide, with uplift modelling planned to measure which actions actually cause purchases.</dd>
+          </dl>
+          <div class="project-links link-group">
+            <a class="text-link" data-link="pdeCode">View code on GitHub</a>
+            <a class="text-link" data-link="pdeArticle">Read the write-up</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>ATS Match Checker</h3>
+          <p class="project-summary">Scores a resume against a job description for both LinkedIn Easy Apply and company career sites, then exports a tailored Word document.</p>
+          <ul class="tags"><li>Python</li><li>Deterministic scoring</li><li>Zero API cost</li></ul>
+        </div>
+        <div>
+          <dl>
+            <dt>What I built</dt>
+            <dd>Keyword gap detection, live re-scoring as keywords are added, and a clean ATS-friendly document export.</dd>
+            <dt>Why it's free to run</dt>
+            <dd><span class="result">No language model in the loop</span>, so every score is repeatable and costs nothing.</dd>
+          </dl>
+          <div class="project-links link-group">
+            <a class="text-link" data-link="atsCode">View code on GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>Demystified</h3>
+          <p class="project-summary">An app that explains AI buzzwords in plain language for busy professionals.</p>
+          <ul class="tags"><li>Google AI Studio</li><li>Gemini</li></ul>
+        </div>
+        <div>
+          <dl>
+            <dt>What it does</dt>
+            <dd>Type in a term you keep hearing and get a clear explanation of what it means and why it matters at work.</dd>
+          </dl>
+          <div class="project-links link-group">
+            <a class="text-link" data-link="demystifiedLive">Try the app</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="method" aria-labelledby="method-title">
+    <div class="wrap">
+      <h2 id="method-title">How I work</h2>
+      <p class="section-intro">Every project follows the same path, and it ends with an honest statement of what the model can't tell you.</p>
+      <ol class="method-steps">
+        <li><strong>Business problem</strong><span>What decision needs to change?</span></li>
+        <li><strong>Data</strong><span>What do we actually know?</span></li>
+        <li><strong>Prediction</strong><span>What is likely to happen?</span></li>
+        <li><strong>Explanation</strong><span>Why does the model think so?</span></li>
+        <li><strong>Action</strong><span>What should the team do?</span></li>
+        <li><strong>Outcome</strong><span>How will we measure it?</span></li>
+        <li><strong>Uncertainty</strong><span>Where could it be wrong?</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-title" hidden>
+    <div class="wrap">
+      <h2 id="exp-title">Experience</h2>
+      <ol class="timeline" id="timeline"></ol>
+    </div>
+  </section>
+
+  <section id="speaking" aria-labelledby="speak-title">
+    <div class="wrap pair">
+      <div>
+        <h2 id="speak-title">Speaking and workshops</h2>
+        <figure class="speak-photo optional-photo">
+          <img src="assets/photo-3.jpg" alt="Devinder Kaur Padam speaking" width="900" height="600" loading="lazy"
+               onerror="this.closest('figure').classList.add('photo-missing')">
+        </figure>
+        <p class="section-intro">Practical sessions for marketing, analytics and business teams who want AI that holds up in front of a CFO.</p>
+        <ul class="topic-list">
+          <li>From workflow to agent: what actually changes</li>
+          <li>Running a multi-agent system on a 5,000-token budget</li>
+          <li>Predicting customer value without overpromising</li>
+          <li>AI for loyalty and retention teams</li>
+        </ul>
+        <a class="btn btn-solid" data-link="email" data-subject="Speaking invitation">Invite me to speak</a>
+      </div>
+      <div class="writing-card" id="writing">
+        <h2>Writing</h2>
+        <p style="margin-top:12px">I publish build notes as Better Than Busy: what I built, how it works, and what the results showed.</p>
+        <ul class="topic-list">
+          <li>Building a career agent, step by step</li>
+          <li>Customer lifetime value for marketers</li>
+          <li>Turning purchase predictions into decisions</li>
+        </ul>
+        <a class="btn btn-line" data-link="substack">Read on Substack</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div>
+      <h2 id="contact-title">Hiring for applied AI or customer intelligence? Let's talk.</h2>
+      <p class="section-intro" style="color:var(--navy)">I'm open to roles, speaking invitations and brand partnerships.</p>
+      <div class="hero-actions link-group">
+        <a class="btn btn-solid" data-link="email" data-subject="Opportunity for Devinder">Email me</a>
+        <a class="btn btn-line" data-link="linkedin">Connect on LinkedIn</a>
+        <a class="btn btn-line" data-link="resume" download>Download CV</a>
+      </div>
+      </div>
+      <figure class="framed optional-photo">
+        <img src="assets/photo-4.jpg" alt="Devinder Kaur Padam" width="600" height="750" loading="lazy"
+             onerror="this.closest('section').classList.add('photo-missing')">
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Devinder Kaur Padam</span>
+    <span>Better Than Busy</span>
+  </div>
+</footer>
+
+<script>
+/* ==============================================================
+   YOUR LINKS: THE ONLY PART YOU NEED TO EDIT
+   Paste the full address between the quotes.
+   Leave a link as "" and its button disappears automatically,
+   so the live site never shows a broken link.
+   ============================================================== */
+const LINKS = {
+  email:            "devinder.kp@gmail.com",   // e.g. "devinder.kp@gmail.com"  (no mailto:)
+  linkedin:         "https://www.linkedin.com/in/devinder-kaur-padam/",   // e.g. "https://www.linkedin.com/in/your-name/"
+  substack:         "https://substack.com/@devinderkp",   // e.g. "https://yourname.substack.com"
+  github:           "https://github.com/BetterThanBusy",
+  resume:           "assets/Resume-Devinder Kaur Padam.pdf",
+
+  careerAgentDemo:  "",
+  careerAgentCode:  "https://github.com/BetterThanBusy/career-intelligence-agent-v4",
+  cardAgentLive:    "https://uae-credit-card-intelligence.onrender.com",
+  cardAgentCode:    "https://github.com/BetterThanBusy/uae-credit-card-intelligence",
+  cieCode:          "https://github.com/BetterThanBusy/Customer_Lifetime_Value",
+  cieArticle:       "https://substack.com/home/post/p-215028003",
+  pdeCode:          "https://github.com/BetterThanBusy/Customer_Purchase_Decision_Engine",
+  pdeArticle:       "https://substack.com/home/post/p-214851420",
+  atsCode:          "https://github.com/BetterThanBusy/ATS-Generator",
+  demystifiedLive:  "https://demystified.ai.studio"
+};
+
+/* OPTIONAL: add jobs here and an Experience section appears.
+   Leave the list empty [] and the section stays hidden. Example:
+   { when: "2021 to 2025", role: "Head of Customer Intelligence", org: "Company name", note: "One line on the impact." }, */
+const EXPERIENCE = [
+];
+
+/* ---------- No need to edit below this line ---------- */
+(function () {
+  function removeLink(a) {
+    const group = a.closest(".link-group");
+    a.closest("li") && a.closest("li").parentElement.classList.contains("link-group") ? a.closest("li").remove() : a.remove();
+    if (group && !group.querySelector("a")) group.remove();
+  }
+
+  document.querySelectorAll("[data-link]").forEach(function (a) {
+    const value = (LINKS[a.dataset.link] || "").trim();
+    if (!value) { removeLink(a); return; }
+    if (a.dataset.link === "email") {
+      const subject = a.dataset.subject ? "?subject=" + encodeURIComponent(a.dataset.subject) : "";
+      a.href = "mailto:" + value + subject;
+    } else {
+      a.href = value;
+      if (/^https?:\/\//.test(value)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    }
+  });
+
+  // Hide the CV buttons if the PDF hasn't been uploaded yet.
+  if (LINKS.resume && location.protocol.startsWith("http")) {
+    fetch(LINKS.resume, { method: "HEAD" }).then(function (r) {
+      if (!r.ok) document.querySelectorAll('[data-link="resume"]').forEach(removeLink);
+    }).catch(function () {});
+  }
+
+  if (EXPERIENCE.length) {
+    const list = document.getElementById("timeline");
+    EXPERIENCE.forEach(function (job) {
+      const li = document.createElement("li");
+      li.innerHTML = '<span class="when"></span><div><h3></h3><p></p></div>';
+      li.querySelector(".when").textContent = job.when;
+      li.querySelector("h3").textContent = job.role + ", " + job.org;
+      li.querySelector("p").textContent = job.note || "";
+      list.appendChild(li);
+    });
+    document.getElementById("experience").hidden = false;
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

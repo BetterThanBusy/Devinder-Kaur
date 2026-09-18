@@ -314,147 +314,79 @@
 }
 
   /* ==========================================================
-     HERO PHOTO
+     HERO PHOTO + "about me" OVERLAP
+     --pad  = space between the photo and the text
+     --over = how far the script reaches across the photo (that part goes navy)
      ========================================================== */
+
+  .hero .wrap {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
 
   .hero-photo {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 500px;
-  margin: 0;
-  justify-self: start;
-}
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
 
-.hero-photo img {
-  display: block;
-  width: 100%;
-  height: auto;
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 896 / 1195;
+    object-fit: cover;
+    object-position: center top;
+  }
 
-  /* Your actual source ratio */
-  aspect-ratio: 896 / 1195;
+  .photo-fallback { display: none; }
 
-  /* CRITICAL: never crop the original photograph */
-  object-fit: contain;
-  object-position: center center;
-}
+  .hero-copy {
+    --pad: 110px;
+    --over: 105px;
+    position: relative;
+    z-index: 2;
+    padding-left: var(--pad);
+    max-width: 660px;
+  }
 
-.photo-fallback {
-  display: none;
-}
+  .hero-intro {
+    position: relative;
+    z-index: 3;
+    margin-left: calc(-1 * (var(--pad) + var(--over)));
+    margin-bottom: 18px;
+  }
 
+  .hero-intro .hello {
+    margin-left: calc(var(--pad) + var(--over));
+  }
 
-  /* ==========================================================
-     HERO COPY
-     ========================================================== */
+  .script-title {
+    position: relative;
+    display: inline-block;
+    font-family: var(--script);
+    font-weight: 400;
+    font-size: clamp(4.8rem, 8vw, 7.5rem);
+    line-height: 0.8;
+    white-space: nowrap;
+    color: var(--white);
+    margin: 0;
+  }
 
-.hero-copy {
-  position: relative;
-  z-index: 3;
-
-  /*
-     Push the text toward the right so it doesn't sit directly
-     on top of the photograph.
-  */
-  padding-left: 115px;
-
-  /*
-     Allows the large statement to breathe.
-  */
-  max-width: 760px;
-}
-
-/* ------------------------------------------------------------
-   ABOUT ME — OVERLAPS THE PHOTO
-   ------------------------------------------------------------ */
-
-.hero-intro {
-  position: relative;
-  margin-left: -150px;
-  margin-bottom: 12px;
-}
-
-/*
-   The entire phrase stays white by default.
-   The special colour treatment for A + half of b is handled
-   with the duplicate overlay below.
-*/
-
-.script-title {
-  display: block;
-  position: relative;
-
-  font-family: var(--script);
-  font-weight: 400;
-
-  font-size: clamp(4.8rem, 8vw, 7.5rem);
-  line-height: 0.78;
-
-  letter-spacing: 0;
-
-  white-space: nowrap;
-
-  color: var(--white);
-
-  margin: 0;
-}
-
-
-/* ------------------------------------------------------------
-   TWO-LETTER COLOUR TREATMENT
-
-   Only the A and the left portion of b receive the dark colour.
-   The rest of "About me" remains white.
-
-   This sits directly over the original text.
-   ------------------------------------------------------------ */
-
-.script-title::after {
-  content: "A";
-  position: absolute;
-  left: 0;
-  top: 0;
-
-  font-family: var(--script);
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: inherit;
-
-  color: var(--navy);
-
-  pointer-events: none;
-}
-
-
-/*
-   Small clipped overlay for approximately half of the "b".
-   Positioned relative to the word.
-*/
-
-.script-title::before {
-  content: "b";
-  position: absolute;
-
-  /*
-     Approximate position of the b after "A".
-     Adjust only if your browser/font renders it slightly differently.
-  */
-  left: 0.48em;
-  top: 0;
-
-  font-family: var(--script);
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: inherit;
-
-  color: var(--navy);
-
-  width: 0.24em;
-  overflow: hidden;
-
-  pointer-events: none;
-}
-
+  /* The navy copy, cut off at the photo's edge */
+  .script-over {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--navy);
+    clip-path: inset(0 calc(100% - var(--over)) 0 0);
+  }
 
 
  /* ------------------------------------------------------------
@@ -576,90 +508,29 @@
 .hero .text-link:hover {
   color: var(--sky);
 }
-
-/* ============================================================
-   TABLET
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  .hero {
-    padding: 45px 0 60px;
+  @media (max-width: 1024px) {
+    .hero-copy { --pad: 56px; --over: 85px; }
+    .script-title { font-size: clamp(3.8rem, 7.6vw, 5.6rem); }
   }
 
-  .hero .wrap {
-    grid-template-columns: 32% 68%;
+  @media (max-width: 860px) {
+    .hero { padding: 32px 0 64px; min-height: 0; }
+    .hero .wrap { grid-template-columns: 66% minmax(0, 1fr); align-items: end; }
+    .hero-photo img, .photo-fallback { aspect-ratio: 4 / 5; }
+    .hero-copy { display: contents; --pad: 0px; --over: 115px; }
+    .hero-intro { grid-column: 2; align-self: start; margin: 90px 0 0; }
+    .hero-intro .hello { margin-left: calc(var(--over) + 10px); }
+    .script-title { font-size: clamp(2.9rem, 12vw, 4.2rem); }
+    .hello { font-size: 1.05rem; }
+    .hero-body { grid-column: 1 / -1; margin-top: 32px; }
   }
 
-  .hero-copy {
-    padding-left: 65px;
+  @media (max-width: 600px) {
+    .hero-intro { display: contents; }
+    .script-title { grid-column: 2; align-self: start; margin: 60px 0 0 calc(-1 * var(--over)); }
+    .hero-intro .hello { grid-column: 1 / -1; margin: 20px 0 0; }
+    .hero-body { margin-top: 20px; }
   }
-
-  .hero-intro {
-    margin-left: -85px;
-  }
-
-  .script-title {
-    font-size: clamp(4rem, 8vw, 6rem);
-  }
-
-  .hello {
-    font-size: clamp(3rem, 6vw, 4.7rem);
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 4vw, 3.1rem);
-  }
-}
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 650px) {
-
-  .hero {
-    min-height: auto;
-    padding: 45px 0 65px;
-  }
-
-  .hero .wrap {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-
-  .hero-photo {
-    width: min(72%, 330px);
-    max-width: 330px;
-    margin: 0 auto;
-  }
-
-  .hero-copy {
-    padding: 0 20px;
-  }
-
-  .hero-intro {
-    margin-left: -10px;
-  }
-
-  .script-title {
-    font-size: clamp(4rem, 17vw, 5.8rem);
-  }
-
-  .hello {
-    font-size: clamp(3rem, 12vw, 4.5rem);
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 8vw, 2.8rem);
-    max-width: 17ch;
-  }
-
-  .lede {
-    font-size: 1.08rem;
-  }
-}
-
-
   /* ==========================================================
      PROOF NUMBERS
      ========================================================== */
@@ -1414,12 +1285,7 @@
 
         <!-- Pinyon Script ONLY -->
 
-        <span
-          class="script-title"
-          aria-hidden="true"
-        >
-          About me
-        </span>
+        <span class="script-title" aria-hidden="true">about me<span class="script-over">about me</span></span>
 
         <p class="hello">
           Hi, I'm Devinder
@@ -1436,7 +1302,7 @@
 
 
         <p class="lede">
-          My background spans 9+ years across digital marketing, eCommerce, loyalty and customer analytics. Today, I build predictive models, AI agents and decision systems across customer intelligence, marketing and financial products.
+          I work where data, AI, and business strategy meet — building predictive models, intelligent agents, and decision systems that turn customer and business data into action. My work spans customer intelligence, marketing analytics, machine learning, automation, and financial products, with a focus on solving real problems and creating measurable business value.
         </p>
 
 

@@ -104,7 +104,7 @@
   }
   .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(47, 65, 86, 0.84); }
   .hero .wrap {
-    width: 100%; display: grid; gap: 0; align-items: center;
+    width: 100%; display: grid; gap: 0; align-items: start;
     grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
   }
   .hero-photo { margin: 0; position: relative; z-index: 1; width: 100%; }  .hero-photo img, .photo-fallback {
@@ -120,8 +120,7 @@
   /* --pad = gap between the photo and the text.
      --over = how far "about me" reaches across the photo (that part turns navy). */
     /* --pad = gap between the photo and the text */
-  .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); max-width: 660px; }
-
+  .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); padding-top: 24px; max-width: 660px; }
   /*.hero-intro { position: relative; z-index: 3; margin-bottom: 18px; }
 
   .script-title {
@@ -134,8 +133,7 @@
     white-space: nowrap; color: var(--white);
     margin: 0 0 0 calc(-1 * (var(--pad) + var(--over)));
   }*/
-    .hero-intro { position: relative; z-index: 3; margin-bottom: 44px; }
-
+  .hero-intro { position: relative; z-index: 3; margin-bottom: 44px; }
   .script-title {
     /* One layer only. The two colours come from a gradient painted into the
        letters, so no stroke can be cut off. --over = how far the navy runs,
@@ -159,8 +157,7 @@
     clip-path: inset(0 calc(100% - var(--over)) 0 0);
   }
 */
-  .hello { font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.05; margin: 56px 0 8px; color: var(--white); }  .hero h1 { font-size: clamp(1.7rem, 2.6vw, 2.35rem); letter-spacing: -0.01em; color: var(--white); max-width: 24ch; }
-  .lede { font-size: clamp(1.02rem, 1.2vw, 1.1rem); max-width: 54ch; margin: 20px 0 32px; color: var(--sky); }
+  .hello { font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.05; margin: 56px 0 8px; color: var(--white); }  .lede { font-size: clamp(1.02rem, 1.2vw, 1.1rem); max-width: 54ch; margin: 20px 0 32px; color: var(--sky); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .hero .btn-solid { background: var(--sky); border-color: var(--sky); color: var(--navy); }
   .hero .btn-solid:hover { background: var(--white); border-color: var(--white); }
@@ -173,8 +170,7 @@
   .hero .text-link { text-decoration-color: var(--sky); }
   .hero .text-link:hover { color: var(--sky); }
   @media (max-width: 1024px) {
-    .hero-copy { --pad: 56px; }
-    .script-title { font-size: clamp(4.6rem, 9vw, 7rem); }
+  .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); padding-top: 24px; max-width: 660px; }    .script-title { font-size: clamp(4.6rem, 9vw, 7rem); }
   }
   @media (max-width: 860px) {
     /* Tablets and phones: big photo on the left, script still overlapping it */

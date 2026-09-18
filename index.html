@@ -40,11 +40,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=PT+Serif:wght@400;700&display=swap" 
-  rel="stylesheet"
-  >
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -63,9 +59,11 @@
     --rule: #DCD3CC;
 
     /* Typography */
-    --heading: "Playfair Display", Georgia, serif;
-    --body: "PT Serif", Georgia, "Times New Roman", serif;
-    --script: "Pinyon Script", "Brush Script MT", cursive;
+     --heading: "Playfair Display", Georgia, serif;
+  --body: "PT Serif", Georgia, "Times New Roman", serif;
+  --script: "Pinyon Script", "Brush Script MT", cursive;
+
+  --wrap: 1120px;
   }
 
 
@@ -85,12 +83,12 @@
   }
 
   body {
-  margin: 0;
+   margin: 0;
   background: var(--beige);
   color: var(--navy);
   font-family: var(--body);
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -118,7 +116,7 @@
  h1, h2, h3 {
   font-family: var(--heading);
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.12;
   margin: 0;
 }
 
@@ -278,319 +276,386 @@
      HERO / ABOUT ME
      ========================================================== */
 
-  .hero {
-    position: relative;
+ .hero {
+  position: relative;
   isolation: isolate;
   overflow: hidden;
-  color: var(--white);
-  padding: 72px 0;
   min-height: calc(100svh - 68px);
+  padding: 55px 0 70px;
   display: flex;
   align-items: center;
+  color: var(--white);
   background: var(--navy);
-  }
+}
 
-
-  /*
-     Blurred background image.
-
-     Reduced from the previous 28px blur to 16px.
-     The image remains visibly atmospheric without becoming
-     an indistinguishable block of colour.
-  */
-
-  .hero-bg {
-    position: absolute;
+.hero-bg {
+  position: absolute;
   inset: -40px;
   z-index: -2;
   background: url("assets/headshot.jpg") center / cover no-repeat;
   filter: blur(16px) grayscale(25%);
   transform: scale(1.05);
-  }
+}
 
-
-  /*
-     Navy overlay keeps the background elegant and ensures
-     readable white typography.
-  */
-
-  .hero::after {
-    content: "";
+.hero::after {
+  content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   background: rgba(47, 65, 86, 0.84);
-  }
+}
 
-
-  .hero .wrap {
-   width: 100%;
+.hero .wrap {
+  width: 100%;
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  gap: 0;
+  grid-template-columns: minmax(300px, 30%) minmax(0, 1fr);
   align-items: center;
-  }
-
+  position: relative;
+}
 
   /* ==========================================================
      HERO PHOTO
      ========================================================== */
 
   .hero-photo {
-    margin: 0;
   position: relative;
   z-index: 1;
   width: 100%;
-  }
+  max-width: 370px;
+  margin: 0;
+  justify-self: start;
+}
 
-  .hero-photo img,
-  .photo-fallback {
-    display: block;
+.hero-photo img {
+  display: block;
   width: 100%;
   height: auto;
+
+  /* Your actual source ratio */
   aspect-ratio: 896 / 1195;
+
+  /* CRITICAL: never crop the original photograph */
   object-fit: contain;
   object-position: center center;
-  }
+}
 
-  .photo-fallback {
-    display: none;
-  place-items: center;
-  background: var(--teal);
-  color: var(--sky);
-  font-family: var(--heading);
-  font-size: 5rem;
-  }
-
-  .hero-photo.no-photo img {
-    display: none;
-  }
-
-  .hero-photo.no-photo .photo-fallback {
-    display: grid;
-  }
+.photo-fallback {
+  display: none;
+}
 
 
   /* ==========================================================
      HERO COPY
      ========================================================== */
 
-  .hero-copy {
-    position: relative;
-  z-index: 2;
-  padding-left: 110px;
-  max-width: 760px;
-  }
-
+.hero-copy {
+  position: relative;
+  z-index: 3;
 
   /*
-     ABOUT ME
-
-     Pinyon Script is used ONLY here.
-     Capital A intentionally preserved.
+     Push the text toward the right so it doesn't sit directly
+     on top of the photograph.
   */
+  padding-left: 115px;
 
-  .script-title {
-    display: block;
+  /*
+     Allows the large statement to breathe.
+  */
+  max-width: 760px;
+}
+
+/* ------------------------------------------------------------
+   ABOUT ME — OVERLAPS THE PHOTO
+   ------------------------------------------------------------ */
+
+.hero-intro {
+  position: relative;
+  margin-left: -150px;
+  margin-bottom: 12px;
+}
+
+/*
+   The entire phrase stays white by default.
+   The special colour treatment for A + half of b is handled
+   with the duplicate overlay below.
+*/
+
+.script-title {
+  display: block;
+  position: relative;
+
   font-family: var(--script);
   font-weight: 400;
-  font-size: clamp(4.5rem, 8vw, 7.5rem);
-  line-height: 0.85;
-  margin: 0 0 20px -95px;
-  white-space: nowrap;
-  color: var(--white);
+
+  font-size: clamp(4.8rem, 8vw, 7.5rem);
+  line-height: 0.78;
+
   letter-spacing: 0;
-  }
 
+  white-space: nowrap;
 
-  /*
-     Small introduction line.
-     This is NOT Pinyon.
-  */
-
-  .hello {
-    font-family: var(--heading);
-  font-size: clamp(3.2rem, 5.2vw, 5.2rem);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  margin: 0 0 28px;
   color: var(--white);
-  }
 
+  margin: 0;
+}
+
+
+/* ------------------------------------------------------------
+   TWO-LETTER COLOUR TREATMENT
+
+   Only the A and the left portion of b receive the dark colour.
+   The rest of "About me" remains white.
+
+   This sits directly over the original text.
+   ------------------------------------------------------------ */
+
+.script-title::after {
+  content: "A";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  font-family: var(--script);
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+
+  color: var(--navy);
+
+  pointer-events: none;
+}
+
+
+/*
+   Small clipped overlay for approximately half of the "b".
+   Positioned relative to the word.
+*/
+
+.script-title::before {
+  content: "b";
+  position: absolute;
 
   /*
-     Main hero statement.
-     Playfair Display.
+     Approximate position of the b after "A".
+     Adjust only if your browser/font renders it slightly differently.
   */
+  left: 0.48em;
+  top: 0;
 
-  .hero h1 {
-    font-family: var(--body);
-  font-size: clamp(1.12rem, 1.45vw, 1.3rem);
+  font-family: var(--script);
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+
+  color: var(--navy);
+
+  width: 0.24em;
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+
+ /* ------------------------------------------------------------
+   HI, I'M DEVINDER
+   Almost as large as About me
+   ------------------------------------------------------------ */
+
+.hello {
+  margin: 0 0 28px;
+
+  font-family: var(--heading);
+  font-weight: 500;
+
+  font-size: clamp(3.5rem, 6vw, 5.7rem);
+  line-height: 0.98;
+
+  letter-spacing: -0.025em;
+
+  color: var(--white);
+}
+
+
+/* ------------------------------------------------------------
+   BIG POSITIONING STATEMENT
+   This is deliberately a large subheading.
+   ------------------------------------------------------------ */
+
+.hero h1 {
+  margin: 0;
+
+  font-family: var(--heading);
+  font-weight: 500;
+
+  font-size: clamp(2.35rem, 4vw, 4rem);
+  line-height: 1.08;
+
+  letter-spacing: -0.025em;
+
+  max-width: 18ch;
+
+  color: var(--white);
+}
+
+
+  /* ------------------------------------------------------------
+   ABOUT DESCRIPTION
+   PT SERIF
+   ------------------------------------------------------------ */
+
+.lede {
+  margin: 28px 0 34px;
+
+  font-family: var(--body);
   font-weight: 400;
-  line-height: 1.65;
-  max-width: 48ch;
-  margin: 24px 0 34px;
+
+  font-size: clamp(1.08rem, 1.35vw, 1.22rem);
+  line-height: 1.7;
+
+  max-width: 54ch;
+
   color: var(--sky);
-    
-  }
+}
 
 
-  /*
-     Supporting copy.
-     GFS Didot / Didot fallback.
-  */
-
-  .lede {
-    font-family: var(--body);
-
-    font-size: clamp(
-      1.05rem,
-      1.35vw,
-      1.22rem
-    );
-
-    font-weight: 400;
-
-    line-height: 1.65;
-
-    max-width: 49ch;
-
-    margin:
-      26px
-      0
-      34px;
-
-    color: var(--sky);
-  }
 
 
-  /* ==========================================================
-     HERO ACTIONS
-     ========================================================== */
+  /* ------------------------------------------------------------
+   BUTTONS
+   ------------------------------------------------------------ */
 
-  .hero-actions {
-    display: flex;
+.hero-actions {
+  display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  }
+}
 
-  .hero .btn-solid {
-    background: var(--sky);
+.hero .btn-solid {
+  background: var(--sky);
   border-color: var(--sky);
   color: var(--navy);
-  }
+}
 
-  .hero .btn-solid:hover {
-     background: var(--white);
+.hero .btn-solid:hover {
+  background: var(--white);
   border-color: var(--white);
-  }
+}
 
-  .hero .btn-line {
-    color: var(--white);
+.hero .btn-line {
+  color: var(--white);
   border-color: var(--white);
-  }
+}
 
-  .hero .btn-line:hover {
-     background: var(--white);
+.hero .btn-line:hover {
+  background: var(--white);
   color: var(--navy);
-  }
-
-  .hero :focus-visible {
-     outline-color: var(--sky);
-  }
+}
 
 
-  /* ==========================================================
-     HERO SOCIAL LINKS
-     ========================================================== */
+/* ------------------------------------------------------------
+   SOCIAL LINKS
+   ------------------------------------------------------------ */
 
-  .hero-social {
-    display: flex;
+.hero-social {
+  display: flex;
   flex-wrap: wrap;
   gap: 24px;
+
   list-style: none;
+
   padding: 0;
-  margin: 40px 0 0;
-  }
+  margin: 38px 0 0;
+}
 
-  .hero .text-link {
-    text-decoration-color: var(--sky);
-  }
+.hero .text-link {
+  color: var(--white);
+  text-decoration-color: var(--sky);
+}
 
-  .hero .text-link:hover {
-    color: var(--sky);
-  }
+.hero .text-link:hover {
+  color: var(--sky);
+}
 
+/* ============================================================
+   TABLET
+   ============================================================ */
 
-  /* ==========================================================
-     MOBILE HERO
-     ========================================================== */
-
-  @media (max-width: 860px) {
+@media (max-width: 900px) {
 
   .hero {
-    padding: 40px 0 64px;
-    min-height: 0;
+    padding: 45px 0 60px;
   }
 
   .hero .wrap {
-    grid-template-columns: 42% 58%;
-    align-items: center;
-  }
-
-  .hero-photo img,
-  .photo-fallback {
-    aspect-ratio: 896 / 1195;
+    grid-template-columns: 32% 68%;
   }
 
   .hero-copy {
-    padding-left: 48px;
-    max-width: none;
+    padding-left: 65px;
+  }
+
+  .hero-intro {
+    margin-left: -85px;
   }
 
   .script-title {
-    margin-left: -48px;
-    font-size: clamp(3.6rem, 11vw, 5.5rem);
+    font-size: clamp(4rem, 8vw, 6rem);
   }
 
   .hello {
-    font-size: clamp(2.6rem, 8vw, 4rem);
+    font-size: clamp(3rem, 6vw, 4.7rem);
   }
 
   .hero h1 {
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-  }
-
-  .lede {
-    font-size: 1.08rem;
+    font-size: clamp(2rem, 4vw, 3.1rem);
   }
 }
+/* ============================================================
+   MOBILE
+   ============================================================ */
 
-@media (max-width: 560px) {
+@media (max-width: 650px) {
+
+  .hero {
+    min-height: auto;
+    padding: 45px 0 65px;
+  }
 
   .hero .wrap {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 35px;
   }
 
   .hero-photo {
     width: min(72%, 330px);
+    max-width: 330px;
     margin: 0 auto;
   }
 
   .hero-copy {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 0 20px;
+  }
+
+  .hero-intro {
+    margin-left: -10px;
   }
 
   .script-title {
-    margin-left: -12px;
-    font-size: clamp(3.8rem, 17vw, 5rem);
+    font-size: clamp(4rem, 17vw, 5.8rem);
   }
 
   .hello {
-    font-size: clamp(2.7rem, 12vw, 4rem);
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    max-width: 17ch;
+  }
+
+  .lede {
+    font-size: 1.08rem;
   }
 }
 

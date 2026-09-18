@@ -122,24 +122,43 @@
     /* --pad = gap between the photo and the text */
   .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); max-width: 660px; }
 
-  .hero-intro { position: relative; z-index: 3; margin-bottom: 18px; }
+  /*.hero-intro { position: relative; z-index: 3; margin-bottom: 18px; }
 
   .script-title {
     /* --over is in em, so the navy part covers the same letters at every size.
        0.98em = the capital A plus half the b. */
-    --over: 0.98em;
+    /*--over: 0.98em;
     position: relative; display: inline-block;
     font-family: var(--script); font-weight: 400;
     font-size: clamp(6rem, 10vw, 9.5rem); line-height: 0.8;
     white-space: nowrap; color: var(--white);
     margin: 0 0 0 calc(-1 * (var(--pad) + var(--over)));
+  }*/
+    .hero-intro { position: relative; z-index: 3; margin-bottom: 44px; }
+
+  .script-title {
+    /* One layer only. The two colours come from a gradient painted into the
+       letters, so no stroke can be cut off. --over = how far the navy runs,
+       in em, so it covers the same letters at every size. */
+    --over: 0.98em;
+    position: relative; top: 26px; display: inline-block;
+    font-family: var(--script); font-weight: 400;
+    font-size: clamp(6rem, 10vw, 9.5rem); line-height: 0.8;
+    white-space: nowrap;
+    padding: 0.45em 0 0.3em;
+    margin: -0.45em 0 -0.3em calc(-1 * (var(--pad) + var(--over)));
+    background-image: linear-gradient(to right, var(--navy) 0 var(--over), var(--white) var(--over));
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 
-  .script-over {
+  /*.script-over {
     position: absolute; left: 0; top: 0; color: var(--navy);
     clip-path: inset(0 calc(100% - var(--over)) 0 0);
   }
-
+*/
   .hello { font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.05; margin: 0 0 8px; color: var(--white); }
   .hero h1 { font-size: clamp(1.7rem, 2.6vw, 2.35rem); letter-spacing: -0.01em; color: var(--white); max-width: 24ch; }
   .lede { font-size: clamp(1.02rem, 1.2vw, 1.1rem); max-width: 54ch; margin: 20px 0 32px; color: var(--sky); }
@@ -166,11 +185,17 @@
     .hero-photo img, .photo-fallback { aspect-ratio: 4 / 5; }
     .hero-copy { display: contents; --pad: 0px; }
     .hero-intro { display: contents; }
-    .script-title {
+    /*.script-title {
       --over: 1.15em;
       grid-column: 2; align-self: start; position: relative; z-index: 3;
       margin: 70px 0 0 calc(-1 * var(--over));
       font-size: clamp(3.2rem, 10vw, 5rem);
+    }*/
+        .script-title {
+      --over: 1.25em;
+      grid-column: 2; align-self: start; position: relative; z-index: 3;
+      margin: calc(70px - 0.45em) 0 -0.3em calc(-1 * var(--over));
+      font-size: clamp(3.4rem, 12vw, 5rem);
     }
     .hero-intro .hello {
       grid-column: 1 / -1; margin: 26px 0 0;
@@ -179,8 +204,11 @@
     .hero-body { grid-column: 1 / -1; margin-top: 18px; }
   }
 
-   @media (max-width: 430px) {
+   /*@media (max-width: 430px) {
     .script-title { --over: 1.35em; margin-top: 56px; font-size: clamp(2.6rem, 9.5vw, 3.6rem); }
+  }*/
+  @media (max-width: 430px) {
+    .script-title { --over: 1.35em; margin-top: calc(48px - 0.45em); font-size: clamp(3rem, 11vw, 4rem); }
   }
 
   /* Proof numbers */
@@ -307,7 +335,9 @@
       </figure>
       <div class="hero-copy">
         <div class="hero-intro">
-        <span class="script-title" aria-hidden="true">About me<span class="script-over">About me</span></span>          <p class="hello">Hi, I'm Devinder</p>
+        <span class="script-title" aria-hidden="true">About me</span>
+        /* <span class="script-title" aria-hidden="true">About me<span class="script-over">About me</span></span> */         
+        <p class="hello">Hi, I'm Devinder</p>
         </div>
         <div class="hero-body">
         <h1>I build AI and data systems that turn customer and business data into decisions.</h1>

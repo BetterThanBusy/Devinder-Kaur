@@ -107,8 +107,7 @@
     width: 100%; display: grid; gap: 0; align-items: center;
     grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
   }
-  .hero-photo { margin: -80px 0 0; position: relative; z-index: 1; width: 100%; }  
-  .hero-photo img, .photo-fallback {
+  .hero-photo { margin: 0; position: relative; z-index: 1; width: 100%; }  .hero-photo img, .photo-fallback {
     width: 100%; height: auto; aspect-ratio: 896 / 1195; object-fit: cover; object-position: center top;
   }
   .photo-fallback {
@@ -163,7 +162,7 @@
     /* Tablets and phones: big photo on the left, script still overlapping it */
     .hero { padding: 32px 0 64px; min-height: 0; }
     .hero .wrap { grid-template-columns: 66% minmax(0, 1fr); align-items: start; }
-    .hero-photo { margin-top: 0; }
+    /*.hero-photo { margin-top: 0; }*/
     .hero-photo img, .photo-fallback { aspect-ratio: 4 / 5; }
     .hero-copy { display: contents; --pad: 0px; }
     .hero-intro { display: contents; }

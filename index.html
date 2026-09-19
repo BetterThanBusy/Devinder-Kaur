@@ -92,17 +92,23 @@
   /* Hero: editorial "about me" layout.
      A blurred copy of your photo fills the background under a navy tint,
      the sharp photo stands tall on the left, and the script title overlaps its edge. */
-  .hero {
-    position: relative; isolation: isolate; overflow: hidden;
-    color: var(--white); padding: 72px 0; min-height: calc(100svh - 68px);
-    display: flex; align-items: center; background: var(--navy);
-  }
-  .hero-bg {
+  /* One shaded canvas behind the hero AND the work section:
+     the blurred headshot runs through both, under a navy tint. */
+  .canvas { position: relative; isolation: isolate; overflow: hidden; background: var(--navy); color: var(--white); }
+  .canvas-bg {
     position: absolute; inset: -60px; z-index: -2;
-    background: url("assets/headshot.jpg") center / cover no-repeat;
-    filter: blur(28px) grayscale(40%); transform: scale(1.08);
+    background: url("assets/headshot.jpg") center 15% / cover no-repeat;
+    filter: blur(40px) grayscale(40%); transform: scale(1.08);
   }
-  .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(47, 65, 86, 0.84); }
+  .canvas::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(47, 65, 86, 0.86); }
+  .canvas h2 { color: var(--white); }
+  .canvas .section-intro { color: var(--sky); }
+
+  .hero {
+    position: relative;
+    color: var(--white); padding: 72px 0; min-height: calc(100svh - 68px);
+    display: flex; align-items: center; background: transparent;
+  }
   .hero .wrap {
     width: 100%; display: grid; gap: 0; align-items: start;
     grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
@@ -209,14 +215,6 @@
     .script-title { --over: 1.35em; margin-top: calc(48px - 0.45em); font-size: clamp(3rem, 11vw, 4rem); }
   }
 
-  /* Proof numbers */
-  .proof { background: var(--navy); color: var(--white); padding: 72px 0; border-top: 1px solid rgba(200, 217, 230, 0.25); }
-  .proof h2 { color: var(--white); font-size: 1.6rem; }
-  .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin: 36px 0 0; padding: 0; list-style: none; }
-  .proof-grid li { padding: 24px 24px 24px 0; border-top: 1px solid rgba(200, 217, 230, 0.35); }
-  .proof-num { display: block; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.1; color: var(--sky); }
-  .proof-label { display: block; margin-top: 6px; }
-  @media (max-width: 700px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
 
   /* Method: a real sequence, so it is numbered */
   .method-steps { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(7, 1fr); counter-reset: step; }
@@ -231,19 +229,31 @@
     .method-steps li::before { grid-row: span 2; }
   }
 
-  /* Work */
-  .work { background: var(--white); }
-  .project { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; padding: 48px 0; border-top: 1px solid var(--rule); }
-  .project:first-of-type { margin-top: 40px; }
+  /* Work: translucent cards floating on the shaded canvas */
+  .work { background: transparent; padding-top: 24px; }
+  .project-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px; margin-top: 40px; align-items: stretch;
+  }
+  .project {
+    display: flex; flex-direction: column;
+    background: rgba(245, 239, 235, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px; padding: 34px;
+    color: var(--navy); backdrop-filter: blur(3px);
+  }
+  .project > div:last-child { display: flex; flex-direction: column; flex: 1; margin-top: 24px; }
+  .project dl { margin: 0; }
+  .project-links { margin-top: auto; padding-top: 6px; }
   .project-summary { font-size: 1.1rem; margin-top: 12px; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 20px 0 0; }
-  .tags li { font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; background: var(--beige); }
+  .tags li { font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.65); }
   .project dl { margin: 0; }
   .project dt { font-weight: 600; color: var(--teal-ink); font-size: 0.95rem; }
   .project dd { margin: 2px 0 18px; }
   .project-links { display: flex; flex-wrap: wrap; gap: 20px; }
   .result { background: var(--sky); padding: 2px 6px; border-radius: 3px; }
-  @media (max-width: 860px) { .project { grid-template-columns: 1fr; gap: 20px; } }
+  @media (max-width: 860px) { .project-grid { grid-template-columns: 1fr; gap: 20px; } .project { padding: 26px; } }
 
   /* Experience (optional, filled from config) */
   .timeline { list-style: none; padding: 0; margin: 40px 0 0; }
@@ -322,8 +332,10 @@
 
 <main id="top">
 
+  <div class="canvas">
+  <div class="canvas-bg" aria-hidden="true"></div>
+
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
     <div class="wrap">
       <figure class="hero-photo" id="heroPhoto">
         <img src="assets/headshot.jpg" alt="Devinder Kaur Padam" width="600" height="1320"
@@ -361,40 +373,12 @@
     </div>
   </section>
 
-  <section class="proof" aria-labelledby="proof-title">
-    <div class="wrap">
-      <h2 id="proof-title">Results from my marketing career</h2>
-      <ul class="proof-grid">
-        <li><span class="proof-num">AED 267M</span><span class="proof-label">incremental revenue</span></li>
-        <li><span class="proof-num">42%</span><span class="proof-label">loyalty redemption</span></li>
-        <li><span class="proof-num">25%</span><span class="proof-label">CLTV improvement</span></li>
-        <li><span class="proof-num">17%</span><span class="proof-label">net revenue increase</span></li>
-        <li><span class="proof-num">15%</span><span class="proof-label">churn reduction</span></li>
-        <li><span class="proof-num">8%</span><span class="proof-label">ROAS improvement</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="about" id="about" aria-labelledby="about-title">
-    <div class="wrap">
-      <div>
-        <h2 id="about-title">From marketing results to AI systems</h2>
-        <p>I spent 9+ years in digital marketing, eCommerce, loyalty and customer analytics. The job was always the same: find the customers who matter most and give the team a clear next move.</p>
-        <p>Today I build that thinking into software: agents that plan and check their own work, models that predict customer value, and decision layers that turn predictions into actions.</p>
-        <p>I also run Better Than Busy, where I publish what I build and what the results showed, so other professionals can use AI with confidence.</p>
-      </div>
-      <figure class="framed optional-photo">
-        <img src="assets/photo-2.jpg" alt="Devinder Kaur Padam at work" width="720" height="900" loading="lazy"
-             onerror="this.closest('section').classList.add('photo-missing')">
-      </figure>
-    </div>
-  </section>
-
   <section class="work" id="work" aria-labelledby="work-title">
     <div class="wrap">
       <h2 id="work-title">Selected work</h2>
       <p class="section-intro">Working systems with code you can read. Each one starts from a business question, not a model.</p>
 
+      <div class="project-grid">
       <article class="project">
         <div>
           <h3>Career Intelligence Agent</h3>
@@ -510,6 +494,23 @@
           </div>
         </div>
       </article>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div>
+        <h2 id="about-title">From marketing results to AI systems</h2>
+        <p>I spent 9+ years in digital marketing, eCommerce, loyalty and customer analytics. The job was always the same: find the customers who matter most and give the team a clear next move.</p>
+        <p>Today I build that thinking into software: agents that plan and check their own work, models that predict customer value, and decision layers that turn predictions into actions.</p>
+        <p>I also run Better Than Busy, where I publish what I build and what the results showed, so other professionals can use AI with confidence.</p>
+      </div>
+      <figure class="framed optional-photo">
+        <img src="assets/photo-2.jpg" alt="Devinder Kaur Padam at work" width="720" height="900" loading="lazy"
+             onerror="this.closest('section').classList.add('photo-missing')">
+      </figure>
     </div>
   </section>
 

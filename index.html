@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:wght@400;500;600&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
 
-<style>@font-face{font-family:"Pinyon Script";src:url(pinyon.ttf)}
+<style>
   :root {
     --navy: #2F4156;
     --teal: #567C8D;
@@ -107,7 +107,8 @@
     width: 100%; display: grid; gap: 0; align-items: start;
     grid-template-columns: minmax(320px, 44%) minmax(0, 1fr);
   }
-  .hero-photo { margin: 0; position: relative; z-index: 1; width: 100%; }  .hero-photo img, .photo-fallback {
+  .hero-photo { margin: 40px 0 0; position: relative; z-index: 1; width: 100%; }
+  .hero-photo img, .photo-fallback {
     width: 100%; height: auto; aspect-ratio: 896 / 1195; object-fit: cover; object-position: center top;
   }
   .photo-fallback {
@@ -119,25 +120,12 @@
 
   /* --pad = gap between the photo and the text.
      --over = how far "about me" reaches across the photo (that part turns navy). */
-    /* --pad = gap between the photo and the text */
   .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); padding-top: 24px; max-width: 660px; }
-  /*.hero-intro { position: relative; z-index: 3; margin-bottom: 18px; }
-
-  .script-title {
-    /* --over is in em, so the navy part covers the same letters at every size.
-       0.98em = the capital A plus half the b. */
-    /*--over: 0.98em;
-    position: relative; display: inline-block;
-    font-family: var(--script); font-weight: 400;
-    font-size: clamp(6rem, 10vw, 9.5rem); line-height: 0.8;
-    white-space: nowrap; color: var(--white);
-    margin: 0 0 0 calc(-1 * (var(--pad) + var(--over)));
-  }*/
   .hero-intro { position: relative; z-index: 3; margin-bottom: 44px; }
   .script-title {
     /* One layer only. The two colours come from a gradient painted into the
-       letters, so no stroke can be cut off. --over = how far the navy runs,
-       in em, so it covers the same letters at every size. */
+       letters, so nothing can be clipped off. --over = how far the navy runs,
+       measured in em so it covers the same letters at every size. */
     --over: 0.98em;
     position: relative; top: 26px; display: inline-block;
     font-family: var(--script); font-weight: 400;
@@ -152,25 +140,49 @@
     -webkit-text-fill-color: transparent;
   }
 
-  /*.script-over {
-    position: absolute; left: 0; top: 0; color: var(--navy);
-    clip-path: inset(0 calc(100% - var(--over)) 0 0);
-  }
-*/
-  .hello { font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.05; margin: 56px 0 8px; color: var(--white); }  .lede { font-size: clamp(1.02rem, 1.2vw, 1.1rem); max-width: 54ch; margin: 20px 0 32px; color: var(--sky); }
+  .hello { font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.05; margin: 56px 0 8px; color: var(--white); }
+  .hero h1 { font-size: clamp(1.7rem, 2.6vw, 2.35rem); letter-spacing: -0.01em; color: var(--white); max-width: 24ch; }
+  .lede { font-size: clamp(1.02rem, 1.2vw, 1.1rem); max-width: 54ch; margin: 20px 0 32px; color: var(--sky); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .hero .btn-solid { background: var(--sky); border-color: var(--sky); color: var(--navy); }
   .hero .btn-solid:hover { background: var(--white); border-color: var(--white); }
   .hero .btn-line { color: var(--white); border-color: var(--white); }
   .hero .btn-line:hover { background: var(--white); color: var(--navy); }
   .hero :focus-visible { outline-color: var(--sky); }
+  /* Social icons */
   .hero-social {
-    display: flex; flex-wrap: wrap; gap: 24px; list-style: none; padding: 0; margin: 40px 0 0;
+    grid-column: 1 / -1;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 48px;
+    list-style: none; padding: 0; margin: 56px 0 0;
+  }
+  .social-btn {
+    display: grid; justify-items: center; gap: 12px;
+    color: var(--white); text-decoration: none;
+  }
+  .social-name {
+    font-family: var(--sans); font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color .15s;
+  }
+  .social-icon {
+    display: grid; place-items: center; width: 76px; height: 76px;
+    border: 1.5px solid rgba(255, 255, 255, 0.55); border-radius: 999px;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .social-icon svg { width: 34px; height: 34px; }
+  .social-btn:hover .social-icon { background: var(--white); border-color: var(--white); color: var(--navy); }
+  .social-btn:hover .social-name { color: var(--sky); }
+  @media (max-width: 860px) {
+    .hero-social { gap: 30px; margin-top: 36px; }
+    .social-name { font-size: 0.82rem; }
+    .social-icon { width: 62px; height: 62px; }
+    .social-icon svg { width: 28px; height: 28px; }
   }
   .hero .text-link { text-decoration-color: var(--sky); }
   .hero .text-link:hover { color: var(--sky); }
   @media (max-width: 1024px) {
-  .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); padding-top: 24px; max-width: 660px; }    .script-title { font-size: clamp(4.6rem, 9vw, 7rem); }
+    .hero-copy { --pad: 110px; position: relative; z-index: 2; padding-left: var(--pad); padding-top: 24px; max-width: 660px; }
+    .script-title { font-size: clamp(4.6rem, 9vw, 7rem); }
   }
   @media (max-width: 860px) {
     /* Tablets and phones: big photo on the left, script still overlapping it */
@@ -180,13 +192,7 @@
     .hero-photo img, .photo-fallback { aspect-ratio: 4 / 5; }
     .hero-copy { display: contents; --pad: 0px; }
     .hero-intro { display: contents; }
-    /*.script-title {
-      --over: 1.15em;
-      grid-column: 2; align-self: start; position: relative; z-index: 3;
-      margin: 70px 0 0 calc(-1 * var(--over));
-      font-size: clamp(3.2rem, 10vw, 5rem);
-    }*/
-        .script-title {
+    .script-title {
       --over: 1.25em;
       grid-column: 2; align-self: start; position: relative; z-index: 3;
       margin: calc(70px - 0.45em) 0 -0.3em calc(-1 * var(--over));
@@ -199,9 +205,6 @@
     .hero-body { grid-column: 1 / -1; margin-top: 18px; }
   }
 
-   /*@media (max-width: 430px) {
-    .script-title { --over: 1.35em; margin-top: 56px; font-size: clamp(2.6rem, 9.5vw, 3.6rem); }
-  }*/
   @media (max-width: 430px) {
     .script-title { --over: 1.35em; margin-top: calc(48px - 0.45em); font-size: clamp(3rem, 11vw, 4rem); }
   }
@@ -268,8 +271,7 @@
     content: ""; position: absolute; inset: 20px -20px -20px 20px;
     background: repeating-linear-gradient(90deg, var(--sky) 0 3px, var(--white) 3px 14px);
   }
-  .framed img { position: relative; width: 100%; height: auto; 
-  aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
+  .framed img { position: relative; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
 
   .about .wrap { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: center; }
   .about p { max-width: 60ch; }
@@ -330,8 +332,8 @@
       </figure>
       <div class="hero-copy">
         <div class="hero-intro">
-        <span class="script-title" aria-hidden="true">About me</span>
-        <p class="hello">Hi, I'm Devinder</p>
+          <span class="script-title" aria-hidden="true">About me</span>
+          <p class="hello">Hi, I'm Devinder</p>
         </div>
         <div class="hero-body">
         <h1>I build AI and data systems that turn customer and business data into decisions.</h1>
@@ -340,13 +342,22 @@
           <a class="btn btn-solid" href="#work">See my work</a>
           <a class="btn btn-line" data-link="email" data-subject="Hello Devinder">Email me</a>
         </div>
-        <ul class="hero-social link-group">
-          <li><a class="text-link" data-link="linkedin">LinkedIn</a></li>
-          <li><a class="text-link" data-link="github">GitHub</a></li>
-          <li><a class="text-link" data-link="substack">Substack</a></li>
-        </ul>
         </div>
       </div>
+        <ul class="hero-social link-group">
+          <li><a class="social-btn" data-link="linkedin" aria-label="LinkedIn">
+            <span class="social-name">LinkedIn</span>
+            <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+          </a></li>
+          <li><a class="social-btn" data-link="github" aria-label="GitHub">
+            <span class="social-name">GitHub</span>
+            <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>
+          </a></li>
+          <li><a class="social-btn" data-link="substack" aria-label="Substack">
+            <span class="social-name">Substack</span>
+            <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></span>
+          </a></li>
+        </ul>
     </div>
   </section>
 

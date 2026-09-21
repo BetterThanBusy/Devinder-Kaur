@@ -283,7 +283,12 @@
   }
   .framed img { position: relative; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
 
-  .about .wrap { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: center; }
+  .about .wrap { display: grid; grid-template-columns: 1fr 360px; gap: 80px; align-items: start; }
+  .about-questions { list-style: none; margin: 8px 0 28px; padding: 0 0 0 22px; border-left: 3px solid var(--teal); }
+  .about-questions li { font-family: var(--serif); font-style: italic; font-size: 1.2rem; line-height: 1.4; padding: 6px 0; }
+  .about-actions { margin-top: 32px; }
+  .about .framed::before { display: none; }
+  .about .framed { position: sticky; top: 100px; }
   .about p { max-width: 60ch; }
   .about h2 { margin-bottom: 24px; }
   .about.photo-missing .wrap { grid-template-columns: 1fr; }
@@ -298,6 +303,7 @@
   @media (max-width: 860px) {
     .about .wrap, .contact .wrap { grid-template-columns: 1fr; gap: 48px; }
     .framed { max-width: 300px; }
+    .about .framed { position: relative; top: 0; }
     .framed::before { inset: 14px -14px -14px 14px; }
   }
 
@@ -503,9 +509,21 @@
     <div class="wrap">
       <div>
         <h2 id="about-title">From marketing results to AI systems</h2>
-        <p>I spent 9+ years in digital marketing, eCommerce, loyalty and customer analytics. The job was always the same: find the customers who matter most and give the team a clear next move.</p>
-        <p>Today I build that thinking into software: agents that plan and check their own work, models that predict customer value, and decision layers that turn predictions into actions.</p>
-        <p>I also run Better Than Busy, where I publish what I build and what the results showed, so other professionals can use AI with confidence.</p>
+        <p>I've always been fascinated by questions like:</p>
+        <ul class="about-questions">
+          <li>Why do customers do what they do?</li>
+          <li>Why does a campaign resonate with one audience but not another?</li>
+          <li>Why does one customer become a loyal advocate while another quietly disappears?</li>
+          <li>And how can technology help businesses better understand, engage, and create lasting value for their customers?</li>
+        </ul>
+        <p>Those questions sparked my interest in analytics early in my career and eventually led me into marketing, loyalty, and artificial intelligence.</p>
+        <p>As a Customer Analytics, Loyalty, and AI Leader with over a decade of experience across retail, e-commerce, and customer engagement, I help organizations understand customer behavior, predict future actions, identify growth opportunities, and create experiences that are more relevant, personalized, and valuable for customers.</p>
+        <p>My journey began in Business Intelligence and Analytics, where I learned that data alone rarely changes outcomes. Every purchase, every click, every visit, every abandoned cart tells a story. What changes outcomes is turning those insights into actions that drive business results.</p>
+        <p>Over the years, I've built my career around uncovering those stories and helping organizations make better decisions. I am passionate about simplifying complexity, connecting customer needs with business objectives, and helping organizations make smarter decisions through data and AI.</p>
+        <p>As artificial intelligence became more accessible, I expanded my focus to applying AI and machine learning to real business challenges. From customer churn prediction and recommendation systems to marketing optimization and AI-powered decision workflows, my work has centered on helping teams move from reporting what happened to predicting what happens next and recommending the best course of action.</p>
+        <div class="about-actions link-group">
+          <a class="btn btn-solid" data-link="newsletter">Subscribe on LinkedIn</a>
+        </div>
       </div>
       <figure class="framed optional-photo">
         <img src="assets/photo-2.jpg" alt="Devinder Kaur Padam at work" width="720" height="900" loading="lazy"
@@ -604,6 +622,7 @@ const LINKS = {
   email:            "devinder.kp@gmail.com",
   linkedin:         "https://www.linkedin.com/in/devinder-kaur-padam/",
   substack:         "https://substack.com/@devinderkp",
+  newsletter:       "https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7507763295081168897",
   github:           "https://github.com/BetterThanBusy",
   resume:           "assets/Resume-Devinder%20Kaur%20Padam.pdf",
 
